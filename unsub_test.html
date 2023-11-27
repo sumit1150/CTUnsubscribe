@@ -1,0 +1,138 @@
+<html>
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        img {
+            margin-bottom: 24px;
+        }
+
+        p {
+            font-family: Arial;
+            font-size: 16px;
+            color: #555555;
+            line-height: 150%;
+            margin-top: 0px;
+            margin-bottom: 24px;
+        }
+
+        ​ form {
+            color: #555555;
+        }
+
+        input#button {
+            display: block;
+            white-space: normal;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        button {
+          padding: 15px 32px;
+        }
+
+    </style>
+    ​<script type="text/javascript">
+     var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[]};
+     clevertap.account.push({"id": "WR5-ZZ6-796Z"});
+     (function () {
+    		 var wzrk = document.createElement('script');
+    		 wzrk.type = 'text/javascript';
+    		 wzrk.async = true;
+    		 wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+    		 var s = document.getElementsByTagName('script')[0];
+    		 s.parentNode.insertBefore(wzrk, s);
+      })();
+    </script>
+</head>
+​
+
+<body>
+    <div class="container" style="padding-top: 32px;">
+        <img src="https://web.faci.ly/wp-content/uploads/2023/05/logo-facily.png" width="351" height="109">
+        <p style="padding-top: 12px;">
+            To unsubscribe your future emails.
+        </p>
+        <div>
+            <input type="hidden" id="email" readonly="readonly" />
+            <br />
+            <button onclick="unsubscribe()">Click here to unsubscribe</button>
+        </div>
+    </div>
+
+
+    ​
+    <!-- clevertap elements -->
+
+    </div>
+    ​
+    <script>
+        //Javascript
+        // Should be true only if your server is url encoding the URL on unsubscribe landing page
+        var isReEncode = false;
+        var reason = "outros";
+        
+        // on  page load, fetch the email id of the user.
+        window.onload = function () {
+            $WZRK_WR.getEmail(isReEncode);
+
+        };
+        // will be called after the email id of the user has been fetched
+        function wzrk_email_fetched(emailStr) {
+            console.log(emailStr);
+            document.getElementById('email').value = emailStr;
+        }
+
+        // will be called after the subscription preferences for the user have been updated
+        function wzrk_email_subscription(status) {
+            // status 0 : unsubscribed, status 1 : subscribed
+            // todo - you can show a success message to the user from here
+            var statusLabel = 'registered successfully';
+            if (status == 0) {
+                statusLabel = 'Successfully unsubscribed';
+            }
+            alert("Você foi " + statusLabel);
+        }
+
+        // call this function to unsubscribe the user
+        function unsubscribe(isReEncode) {
+            $WZRK_WR.unSubEmail(isReEncode);
+            // Enviar o motivo, mas tem que puxar o profile antes que não está funcionando.
+            // var motive = Array.from(form.elements.OPT_OUT_WINE_MOTIVO).find(radio => radio.checked);
+            // clevertap.profile.push({
+            //     "Site": {
+            //         "Email Unsubscription Reason": reason.value
+            //     }
+            // });
+        }
+        
+        // call this function to resubscribe the user
+        function resubscribe(isReEncode) {
+            $WZRK_WR.subEmail(isReEncode);
+        }
+
+        // call this function if failed
+        function wzrk_email_subscription_failed(params) {
+            alert("Oops! The process could not be completed.");
+        }
+    </script>
+    ​
+</body>
+
+</html>

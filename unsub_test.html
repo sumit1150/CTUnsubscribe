@@ -64,15 +64,56 @@
 ​
 
 <body>
+    <script>
+function generateRandomId() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let randomId = '';
+
+    for (let i = 0; i < 6; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        randomId += characters.charAt(randomIndex);
+    }
+
+    return randomId;
+}
+    </script>
+    
     <div class="container" style="padding-top: 32px;">
-        <img src="https://web.faci.ly/wp-content/uploads/2023/05/logo-facily.png" width="351" height="109">
+        <img src="https://exchange4media.gumlet.io/news-photo/126911-1652961848.clevertapLP.jpg" width="500" height="400">
         <p style="padding-top: 12px;">
             To unsubscribe your future emails.
         </p>
         <div>
             <input type="hidden" id="email" readonly="readonly" />
-            <br />
-            <button onclick="unsubscribe()">Click here to unsubscribe</button><br>
+
+<h1>Enter EMail ID</h1>
+
+<form onsubmit="submitForm(event)">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Prevents the default form submission
+           var emailInput = document.getElementById('email').value;
+           const randomId = generateRandomId();
+           console.log(randomId);
+            console.log(emailInput);
+            clevertap.onUserLogin.push({
+             "Site": {
+               "Identity": randomId,            
+               "Email": "emailInput",         
+               "MSG-email": true,              
+                     }
+                });     
+            alert('Email submitted: ' + emailInput);
+        }
+    </script>
+            <br>
+            <button onclick="unsubscribe()">Click here to unsubscribe</button><be><br>
             <button onclick="resubscribe()">Click here to Re-subscribe</button>
         </div>
     </div>

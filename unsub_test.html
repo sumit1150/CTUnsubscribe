@@ -91,18 +91,26 @@ function generateRandomId() {
         <input type="email" id="email" name="email" required>
         <br>
         <input type="submit" value="Submit">
-    </form>
-
+    </form> <br><br><br>
+<input type="button" value="Push the identity" onclick="idPush()">
     <script>
+        function idPush(){
+        const randomId = generateRandomId();
+           console.log(randomId);
+            clevertap.onUserLogin.push({
+             "Site": {
+               "Identity": randomId,                      
+                     }
+                });     
+            alert('Identity Pushed' + randomId);
+        }
+        
         function submitForm(event) {
             event.preventDefault(); // Prevents the default form submission
            var emailInput = document.getElementById('email').value;
-           const randomId = generateRandomId();
-           console.log(randomId);
             console.log(emailInput);
             clevertap.onUserLogin.push({
-             "Site": {
-               "Identity": randomId,            
+             "Site": {        
                "Email": "emailInput",         
                "MSG-email": true,              
                      }
